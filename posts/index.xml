@@ -1,0 +1,1386 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1000ch.net</title>
+    <link>https://1000ch.net/posts.html</link>
+    
+    
+    
+    <updated>2016.06.15</updated>
+    
+    <item>
+      <title>ソーシャルボタンのWeb Components</title>
+      <link>https://1000ch.net/posts/2016/social-button.html</link>
+      <pubDate>Wed, 15 Jun 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/social-button.html</guid>
+      <description>
+
+&lt;h1 id=&#34;ソーシャルボタンのweb-components:291223e4bc739312816f9240ee8b5f56&#34;&gt;ソーシャルボタンのWeb Components&lt;/h1&gt;
+
+&lt;p&gt;世間では久しく聞かなくなったWeb Componentsの話題だが、各種スペックのアップデートは着々と行われている。そんな中、昔作った&lt;a href=&#34;https://1000ch.github.io/social-button/&#34;&gt;&lt;code&gt;&amp;lt;social-button&amp;gt;&lt;/code&gt;&lt;/a&gt;というTwitter・Facebook・Google+のソーシャルボタンのWeb Components実装のShadow DOM部分を、&lt;a href=&#34;https://github.com/1000ch/social-button/commit/e7764ca88168aa94f491282f1c4500594467991a&#34;&gt;アップデートした&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;トランスパイル無しでes2015:291223e4bc739312816f9240ee8b5f56&#34;&gt;トランスパイル無しでES2015&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://1000ch.net/posts/2016/web-components-es2015-class.html&#34;&gt;ES2015のclass構文で書くWeb Components&lt;/a&gt;でも書いているように、&lt;code&gt;class&lt;/code&gt;シンタックスを使ってリライトしている。ES2015のブラウザサポートも、Safari TPが100%、Chromeがtail call optimisation以外、FirefoxとEdgeも頑張っているのでそろそろ良かろうということで、トランスパイルなしで書くようになってきている（バベるの面倒）。&lt;/p&gt;
+
+&lt;p&gt;世間では阿鼻叫喚のWindows 10への強制アップデートを僕は密かに応援していて、アレが進めば進むほどIEがいなくなってくれるので、Microsoftさん頑張ってくれないかなぁと思っている。アップデートを嫌がるエンプラ業界やら世間一般の人、どうしたら説得されてくれるんでしょう。Chrome・Firefox・Safari・Edgeのブラウザ群雄割拠時代になればもっとWebは良くなる気もするので、どうにかなって欲しい。&lt;/p&gt;
+
+&lt;h2 id=&#34;web-componentsのアップデート関連:291223e4bc739312816f9240ee8b5f56&#34;&gt;Web Componentsのアップデート関連&lt;/h2&gt;
+
+&lt;p&gt;Shadow DOM周りは実装されているが、Custom Elementsに関しては実験的実装にすら至っていないようで、&lt;code&gt;document.registerElement()&lt;/code&gt;のままである。Web Componentsに関しては、もうちょっとスペックと実装が揃ったらまとめなおそうかと思う。&lt;/p&gt;
+
+&lt;p&gt;それだけ。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>パフォーマンスに関する各種ブラウザAPI</title>
+      <link>https://1000ch.net/posts/2016/performance-api.html</link>
+      <pubDate>Tue, 14 Jun 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/performance-api.html</guid>
+      <description>
+
+&lt;h1 id=&#34;パフォーマンスに関する各種ブラウザapi:2f60f0ed9935eac35bfa25f474190847&#34;&gt;パフォーマンスに関する各種ブラウザAPI&lt;/h1&gt;
+
+&lt;p&gt;◯◯ Timing APIはW3CのWeb Performance Working GroupのIlya Grigorikを中心に策定が進められている、ブラウザのパフォーマンスを計測するブラウザAPIである。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://w3c.github.io/user-timing/&#34;&gt;User Timing API&lt;/a&gt;: 任意のラベルを用いてプログラムの実行にかかったを取得する&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://w3c.github.io/navigation-timing/&#34;&gt;Navigation Timing API&lt;/a&gt;: ブラウザライフサイクルの発生した時間を取得する&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://w3c.github.io/resource-timing/&#34;&gt;Resource Timing API&lt;/a&gt;: リソースのロードに際して発生した各種時間を取得する&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://w3c.github.io/frame-timing/&#34;&gt;Frame Timing API&lt;/a&gt;: ブラウザフレームの内訳を取得する&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://w3c.github.io/server-timing/&#34;&gt;Server Timing API&lt;/a&gt;: サーバー処理の内訳を取得する&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://w3c.github.io/hr-time/&#34;&gt;High Resolution Time API&lt;/a&gt;: 高精度のタイムスタンプを提供する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ブラウザの&lt;code&gt;window&lt;/code&gt;オブジェクトに&lt;code&gt;performance&lt;/code&gt;というプロパティがあるので、DevToolsを開いてConsoleパネルで&lt;code&gt;window.performance&lt;/code&gt;と入力すると、何やら見覚えのあるプロパティに数値が入っているのがわかる。&lt;/p&gt;
+
+&lt;p&gt;なかでもFrame TimingとServer Timingは若く、ブラウザに実験的実装はおろかスペックに関する資料も少ない。ここで記載している内容はこれから変わる可能性は高いのでご注意を。&lt;/p&gt;
+
+&lt;h2 id=&#34;user-timing-api:2f60f0ed9935eac35bfa25f474190847&#34;&gt;User Timing API&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://w3c.github.io/user-timing/&#34;&gt;User Timing API&lt;/a&gt;は、&lt;code&gt;performance.mark()&lt;/code&gt;と&lt;code&gt;performance.measure()&lt;/code&gt;で任意のタイミングのパフォーマンスを計測するAPI。&lt;code&gt;performance.mark()&lt;/code&gt;で任意のタイミングにマークをし、&lt;code&gt;performance.measure()&lt;/code&gt;でマーク間の差分を取得するような使い方。&lt;/p&gt;
+
+&lt;p&gt;以下は&lt;code&gt;XMLHttpRequest&lt;/code&gt;による非同期リクエストのパフォーマンスを計測する例。&lt;code&gt;performance.mark()&lt;/code&gt;や&lt;code&gt;performance.measure()&lt;/code&gt;したデータは、&lt;code&gt;performance.getEntriesByType(&#39;mark&#39;)&lt;/code&gt;のように計測タイプを指定して取得可能になっている。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;let xhr = new XMLHttpRequest();
+xhr.open(&#39;GET&#39;, &#39;/&#39;, true);
+xhr.onload = e =&amp;gt; {
+  performance.mark(&#39;mark-xhr-end&#39;);
+  performance.measure(&#39;xhr-start-end&#39;, &#39;mark-xhr-start&#39;, &#39;mark-xhr-end&#39;);
+  console.log(performance.getEntriesByType(&#39;mark&#39;));
+  console.log(performance.getEntriesByType(&#39;measure&#39;));
+};
+performance.mark(&#39;mark-xhr-start&#39;);
+xhr.send();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以前まではDevToolsのTimelineパネルにこのマークした情報が表示されていたが、53周辺では消えている気がする。Canaryだからかもしれないけど。&lt;/p&gt;
+
+&lt;h2 id=&#34;navigation-timing-api:2f60f0ed9935eac35bfa25f474190847&#34;&gt;Navigation Timing API&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://w3c.github.io/navigation-timing/&#34;&gt;Navigation Timing API&lt;/a&gt;は、ブラウザのページロード完了までの&lt;code&gt;DOMContentLoaded&lt;/code&gt;や&lt;code&gt;load&lt;/code&gt;のようなライフサイクルイベントを取得するAPI。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/performance-api/processing-model.svg&#34; alt=&#34;Processing Model&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;performance.timing&lt;/code&gt;から以下の情報を取得できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;console.log(
+  &#39;Name: &#39;       + performance.timing.name      + &#39;\n&#39; +
+  &#39;Entry Type: &#39; + performance.timing.entryType + &#39;\n&#39; +
+  &#39;Start Time: &#39; + performance.timing.startTime + &#39;\n&#39; +
+  &#39;Duration: &#39;   + performance.timing.duration  + &#39;\n&#39; +
+  &#39;Unload: &#39;     + (performance.timing.unloadEventEnd - performance.timing.unloadEventStart)   + &#39;n&#39; +
+  &#39;Redirect: &#39;   + (performance.timing.redirectEnd - performance.timing.redirectStart)         + &#39;n&#39; +
+  &#39;App Cache: &#39;  + (performance.timing.domainLookupStart - performance.timing.fetchStart)      + &#39;n&#39; +
+  &#39;DNS: &#39;        + (performance.timing.domainLookupEnd - performance.timing.domainLookupStart) + &#39;n&#39; +
+  &#39;TCP: &#39;        + (performance.timing.connectEnd - performance.timing.connectStart)           + &#39;n&#39; +
+  &#39;Request: &#39;    + (performance.timing.responseStart - performance.timing.requestStart)        + &#39;n&#39; +
+  &#39;Response: &#39;   + (performance.timing.responseEnd - performance.timing.responseStart)         + &#39;n&#39; +
+  &#39;Processing: &#39; + (performance.timing.loadEventStart - performance.timing.responseEnd)        + &#39;n&#39; +
+  &#39;Onload: &#39;     + (performance.timing.loadEventEnd - performance.timing.loadEventStart)       + &#39;n&#39;
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここから&lt;code&gt;PerformanceEntry&lt;/code&gt;などのインターフェースに対応するNavigation Timing Level 2という仕様の策定が進んでいる。これは後述の&lt;code&gt;PerformanceObserver&lt;/code&gt;に必要なインターフェースとなっている。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DOMContentLoaded&lt;/code&gt;や&lt;code&gt;load&lt;/code&gt;、&lt;code&gt;document.readyState&lt;/code&gt;との対応関係は次のようになりそう。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Browser lifecycle&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;document.readyState&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;Navigation Timing API&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;timing.domLoading&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;loading&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;timing.domInteractive&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;interactive&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;DOMContentLoaded&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;timing.domContentLoadedEventStart&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;timing.domContentLoadedEventEnd&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;timing.domComplete&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;complete&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;load&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;timing.loadEvent&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;resource-timing-api:2f60f0ed9935eac35bfa25f474190847&#34;&gt;Resource Timing API&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://w3c.github.io/resource-timing/&#34;&gt;Resource Timing API&lt;/a&gt;はページ内でロードされたリソースに関する情報を取得するAPI。雑に言えばNavigation Timing APIのサブリソース版。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;performance.getEntriesByType()&lt;/code&gt;に&lt;code&gt;resource&lt;/code&gt;を指定して取得する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;for (let resource of performance.getEntriesByType(&#39;resource&#39;)) {
+  console.log(
+    &#39;Name: &#39;       + resource.name      + &#39;\n&#39; +
+    &#39;Entry Type: &#39; + resource.entryType + &#39;\n&#39; +
+    &#39;Start Time: &#39; + resource.startTime + &#39;\n&#39; +
+    &#39;Duration: &#39;   + resource.duration  + &#39;\n&#39; +
+    &#39;Redirect: &#39;   + (resource.redirectEnd - resource.redirectStart)         + &#39;n&#39; +
+    &#39;App Cache: &#39;  + (resource.domainLookupStart - resource.fetchStart)      + &#39;n&#39; +
+    &#39;DNS: &#39;        + (resource.domainLookupEnd - resource.domainLookupStart) + &#39;n&#39; +
+    &#39;TCP: &#39;        + (resource.connectEnd - resource.connectStart)           + &#39;n&#39; +
+    &#39;Request: &#39;    + (resource.responseStart - resource.requestStart)        + &#39;n&#39; +
+    &#39;Response: &#39;   + (resource.responseEnd - resource.responseStart)         + &#39;n&#39; +
+    &#39;Processing: &#39; + (resource.loadEventStart - resource.responseEnd)        + &#39;n&#39;
+  );
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;frame-timing-api:2f60f0ed9935eac35bfa25f474190847&#34;&gt;Frame Timing API&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://w3c.github.io/frame-timing/&#34;&gt;Frame Timing API&lt;/a&gt;はページ描画のフレーム情報を取得するAPI。Navigation Timing APIやResource Timing APIはネットワーク処理に関するパフォーマンスの情報だが、これはレンダリングパフォーマンスの情報ということになる。&lt;/p&gt;
+
+&lt;p&gt;1フレームはイベントループにおける&lt;code&gt;vsync&lt;/code&gt;から&lt;code&gt;vsync&lt;/code&gt;までを指す。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/performance-api/frame-model.png&#34; alt=&#34;Frame Model&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;performance.getEntriesByType()&lt;/code&gt;に&lt;code&gt;renderer&lt;/code&gt;ないし&lt;code&gt;composite&lt;/code&gt;を指定して取得する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;for (let renderer of performance.getEntriesByType(&#39;renderer&#39;)) {
+  console.log(
+    &#39;Name: &#39;       + renderer.name      + &#39;\n&#39; +
+    &#39;Entry Type: &#39; + renderer.entryType + &#39;\n&#39; +
+    &#39;Start Time: &#39; + renderer.startTime + &#39;\n&#39; +
+    &#39;Duration: &#39;   + renderer.duration  + &#39;\n&#39;
+  );
+}
+
+for (let composite of performance.getEntriesByType(&#39;composite&#39;)) {
+  console.log(
+    &#39;Name: &#39;       + composite.name      + &#39;\n&#39; +
+    &#39;Entry Type: &#39; + composite.entryType + &#39;\n&#39; +
+    &#39;Start Time: &#39; + composite.startTime + &#39;\n&#39; +
+    &#39;Duration: &#39;   + composite.duration  + &#39;\n&#39;
+  );
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;renderer&lt;/code&gt;はメインスレッドからCompositorへ行われるコミット、&lt;code&gt;composite&lt;/code&gt;はCompositorからのドローコールに関する情報である。&lt;/p&gt;
+
+&lt;p&gt;これらは必ずしも対にはならず、Compositorからのドローコールはメインスレッドからのコミットに依存しない。例えばスクロールなんかの時はビットマップの再構築をせずディスプレイへのピクセルを送り直すということだと思われる。たぶん。&lt;/p&gt;
+
+&lt;h2 id=&#34;server-timing-api:2f60f0ed9935eac35bfa25f474190847&#34;&gt;Server Timing API&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://w3c.github.io/server-timing/&#34;&gt;Server Timing API&lt;/a&gt;は、レスポンスヘッダの&lt;code&gt;Server-Timing&lt;/code&gt;フィールドにサーバーの各処理にかかった時間を含めて、クライアントでそれを参照できるようにしようというAPI。IlyaのGist（&lt;a href=&#34;https://gist.github.com/igrigorik/97dfe5ea9b4a85162e25&#34;&gt;igrigorik/server-timing.md&lt;/a&gt;）レベルなので、まだまだ仕様の着地には遠そうだが、便利そう。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Cache-Control: max-age=360, public
+Transfer-Encoding: chunked
+Server-Timing: db=150; cache=22
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;レスポンスヘッダの&lt;code&gt;Server-Timing&lt;/code&gt;フィールドがあれば、この場合はDBアクセスに150msかかり、キャッシュの参照に22msかかったということが表せる。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;performance.getEntriesByType()&lt;/code&gt;に&lt;code&gt;server&lt;/code&gt;を指定して取得する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;for (let server of performance.getEntriesByType(&#39;server&#39;)) {
+  console.log(
+    &#39;Name: &#39;        + renderer.name        + &#39;\n&#39; +
+    &#39;Entry Type: &#39;  + renderer.entryType   + &#39;\n&#39; +
+    &#39;Start Time: &#39;  + renderer.startTime   + &#39;\n&#39; +
+    &#39;Duration: &#39;    + renderer.duration    + &#39;\n&#39; +
+    &#39;Metric: &#39;      + renderer.metric      + &#39;\n&#39; +
+    &#39;Description: &#39; + renderer.description + &#39;\n&#39;
+  );
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;high-resolution-time-api:2f60f0ed9935eac35bfa25f474190847&#34;&gt;High Resolution Time API&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.w3.org/TR/hr-time/&#34;&gt;High Resolution Time API&lt;/a&gt;はマイクロ秒単位でパフォーマンスを計測するためのAPI。&lt;code&gt;Date.now()&lt;/code&gt;のミリ秒では不十分ということで、細かな計測には&lt;code&gt;performance.now()&lt;/code&gt;を使うと良い。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;performance.now()&lt;/code&gt;が返す&lt;code&gt;DOMHighResTimeStamp&lt;/code&gt;は、ここまで紹介してきた各APIの時間に関するプロパティでも使われている。内部的にはただの&lt;code&gt;double&lt;/code&gt;である。&lt;/p&gt;
+
+&lt;h2 id=&#34;performance-observer:2f60f0ed9935eac35bfa25f474190847&#34;&gt;Performance Observer&lt;/h2&gt;
+
+&lt;p&gt;ブラウザパフォーマンスを計測するAPIは先に挙げた、User Timing API・Navigation Timing API・Resource Timing API・Frame Timing API・Server Timing APIの5つがある。&lt;a href=&#34;https://w3c.github.io/performance-timeline/&#34;&gt;Performance Observer&lt;/a&gt;はこれらの変更を監視するAPIである。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;PerformanceObserver&lt;/code&gt;のインスタンスを作り、監視開始には&lt;code&gt;observe()&lt;/code&gt;、終了には&lt;code&gt;disconnect()&lt;/code&gt;を実行する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;const observer = new PerformanceObserver(list =&amp;gt; {
+  for (let entry of list.getEntries()) {
+    console.log(
+      &#39;Name: &#39;       + entry.name      + &#39;\n&#39; +
+      &#39;Entry Type: &#39; + entry.entryType + &#39;\n&#39; +
+      &#39;Start Time: &#39; + entry.startTime + &#39;\n&#39; +
+      &#39;Duration: &#39;   + entry.duration  + &#39;\n&#39;
+    );
+  }
+});
+
+observer.observe({
+  entryTypes : [&#39;resource&#39;]
+});
+
+observer.disconnect();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;observe()&lt;/code&gt;の引数にはどの種類のパフォーマンスのタイムスタンプを監視するかを指定してあげる。ここではResource Timing APIで取得する値を監視するべく&lt;code&gt;resource&lt;/code&gt;を指定しているが、ここまで&lt;code&gt;performance.getEntriesByType()&lt;/code&gt;の引数に指定してきた文字列を取りうる。&lt;/p&gt;
+
+&lt;p&gt;メトリクス毎に&lt;code&gt;PerformanceObserver&lt;/code&gt;を分けるなどの使い方も可能だろう。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AbemaTVのランタイムパフォーマンスのAudit</title>
+      <link>https://1000ch.net/posts/2016/abematv-runtime-perf-audit.html</link>
+      <pubDate>Tue, 17 May 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/abematv-runtime-perf-audit.html</guid>
+      <description>
+
+&lt;h1 id=&#34;abematvのランタイムパフォーマンスのaudit:402495cc9e8356c6486bf32fc091c585&#34;&gt;AbemaTVのランタイムパフォーマンスのAudit&lt;/h1&gt;
+
+&lt;p&gt;最近業務で、巷で話題の&lt;a href=&#34;https://abema.tv/&#34;&gt;AbemaTV&lt;/a&gt;のパフォーマンス改善をしている。個別具体性が高いが調査改善の雰囲気を感じ取ってもらえればそれで良いかと思い、記事にした。&lt;/p&gt;
+
+&lt;h2 id=&#34;abematvのフロントエンドの構成:402495cc9e8356c6486bf32fc091c585&#34;&gt;AbemaTVのフロントエンドの構成&lt;/h2&gt;
+
+&lt;p&gt;話の前提となるAbemaTVのフロントエンドの構成は次の通りで、まさに流行りのといった感じ。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/facebook/react&#34;&gt;facebook/react&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://facebook.github.io/immutable-js/&#34;&gt;facebook/immutable-js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/Reactive-Extensions/RxJS&#34;&gt;Reactive-Extensions/RxJS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/reactjs/react-router&#34;&gt;reactjs/react-router&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/css-modules/css-modules&#34;&gt;css-modules/css-modules&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ビルド周りは&lt;a href=&#34;https://babeljs.io/&#34;&gt;babel&lt;/a&gt;と&lt;a href=&#34;https://webpack.github.io/&#34;&gt;webpack&lt;/a&gt;、あとはlintツールがちょこちょこ入ったりしている。この改善の話と関係してくるのは、ReactとImmutableJSとRxJSだけ。&lt;/p&gt;
+
+&lt;h2 id=&#34;番組再生画面のコメント開閉が重い:402495cc9e8356c6486bf32fc091c585&#34;&gt;番組再生画面のコメント開閉が重い&lt;/h2&gt;
+
+&lt;p&gt;今回ケーススタディとして挙げるのは番組再生画面のコメント開閉機能。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/abematv-runtime-perf-audit/comment.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;再生されている内容は無視してもらってGIFアニメの通り、右下のコメントアイコンを押してコメントを開閉するアクションがある。FPSが低くてわかりにくいが、クリック後に200ms程遅延した後にようやく右からコメント領域がせり出てくる。会社の高スペックなMacBook Proでこの状態なので、これはマズい。&lt;/p&gt;
+
+&lt;h2 id=&#34;コメント領域を全て開くまでに200msかかっている:402495cc9e8356c6486bf32fc091c585&#34;&gt;コメント領域を全て開くまでに200msかかっている&lt;/h2&gt;
+
+&lt;p&gt;クリック後の反応は速いが、アニメーションの最中に何かにつっかかる。コメントを表示して非表示にする一連の処理を、DevToolsのTimelineで計測してみると以下の様な結果が得られた。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/abematv-runtime-perf-audit/timeline.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;見たところスクリプト処理（黄色い部分）がアニメーション処理（紫色の部分）の手前で邪魔をしていることがわかる。200ms全てスクリプト処理に持って行かれているので、FPSは0の状態が続いている。応じて、メモリもピークまで達したあとガクッと低下している。&lt;/p&gt;
+
+&lt;h3 id=&#34;アニメーション処理そのものの負荷:402495cc9e8356c6486bf32fc091c585&#34;&gt;アニメーション処理そのものの負荷&lt;/h3&gt;
+
+&lt;p&gt;先程のタイムラインを見てもわかるように、アニメーション処理そのものの負荷は低い。DevToolsのドロワーメニューのRenderingタブに、 &lt;strong&gt;Paint Flashing&lt;/strong&gt; と &lt;strong&gt;Layers Borders&lt;/strong&gt; というメニューがあるので、これらにチェックをすると画面上に緑色の領域（描画処理が発生している領域）と、オレンジ色の枠（レイヤの境界線）が表れる。この状態でコメントの表示・非表示を切り替えてみる。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/abematv-runtime-perf-audit/devtools-drawer.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;すると、コメントの領域はオレンジ色の枠で囲まれているだけで、緑色にはなっておらず描画処理は行われていないことがわかる。この時点で、コメント領域は既に描画されているが画面内に入っておらず、アイコンがクリックされたタイミングでアニメーションしながら表示されることがわかる。アニメーションのタイミングでは描画処理が行われていない（というと語弊がありそうだが）ので、GPUでテクスチャ化されているものが動いているだけということもわかる。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/abematv-runtime-perf-audit/comment-animation.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;CSSを確認してみると、以下のようになっていた。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.right-slide-base {
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transform: translateX(100%);
+  transition: transform var(--duration) var(--ease-out-cubic);
+  z-index: var(--z-footer);
+}
+
+.right-comment-area {
+  composes: right-slide-base;
+  background-color: var(--lt-bg-regular);
+  width: 310px;
+}
+
+.right-slide--shown {
+  transform: translateX(0);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;予想通り、クリック時&lt;code&gt;.right-slide--shown&lt;/code&gt;を付け外すことで&lt;code&gt;transformX(n)&lt;/code&gt;で表示状態を切り替えている。これならば&lt;code&gt;.right-comment-area&lt;/code&gt;が適用されている要素が変化しビットマップが更新されない限り、アニメーションによる再描画は発生しない。コメント表示は、機能としてポーリングで新しいコメントをロードするようになっているので、GPUに再度送っちゃう問題が起こりそうだが、一旦置いておく。&lt;/p&gt;
+
+&lt;h3 id=&#34;開閉に伴うスクリプト処理:402495cc9e8356c6486bf32fc091c585&#34;&gt;開閉に伴うスクリプト処理&lt;/h3&gt;
+
+&lt;p&gt;クリック時のスクリプト処理を抜粋。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;showCommentList(toShow = true) {
+  this.closeAll();
+  this.showElement(this.refs.commentList, toShow);
+
+  if (!this.state.metaSlotId) return;
+  if (toShow) {
+    this.fetchComment(this.state.metaSlotId, this.metaData.get(&amp;quot;channelId&amp;quot;));
+    this.mergeComments();
+    this.commentFetchSubscription = Rx.Observable.interval(POLLING_INTERVAL * CONVERSIONS.sec)
+      .subscribe(() =&amp;gt; {
+        if (!this.state.metaSlotId) return;
+        this.fetchComment(this.state.metaSlotId, this.metaData.get(&amp;quot;channelId&amp;quot;));
+      });
+  } else {
+    this.fetchSlotAudience(this.state.metaSlotId);
+    if (this.commentFetchSubscription) {
+      this.commentFetchSubscription.dispose();
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;this.showElement()&lt;/code&gt;で先程の&lt;code&gt;.right-slide--shown&lt;/code&gt;を付け外していて、その後のコメントデータを取得している。ここが重そうな予感がする。&lt;/p&gt;
+
+&lt;p&gt;表示の時（&lt;code&gt;toShow&lt;/code&gt;が&lt;code&gt;true&lt;/code&gt;のとき）に行われる&lt;code&gt;this.fetchComment()&lt;/code&gt;で、コメントデータをサーバーから取得している。サーバーレスポンスが重いのかどうかの確認のため、対象のリクエストをNetworkパネルで確認する。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/abematv-runtime-perf-audit/fetch-comment.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Waitingが36msということで、大きな問題は無さそう。&lt;/p&gt;
+
+&lt;p&gt;では、Timelineから問題が見受けられていたスクリプト処理をプロファイルしてみる。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/abematv-runtime-perf-audit/cpu-profile.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;すると&lt;code&gt;storeComment()&lt;/code&gt;という関数で200msかかっているおり、その配下で2回コールされている&lt;code&gt;setState()&lt;/code&gt;にそれぞれ100msかかっていることがわかる。&lt;code&gt;storeComment()&lt;/code&gt;は&lt;code&gt;this.fetchComment()&lt;/code&gt;内でコールしているアクションで呼び出され、subscriberに対してdispatchしている様子。&lt;/p&gt;
+
+&lt;p&gt;案の定&lt;code&gt;subscribe()&lt;/code&gt;のコールバックで&lt;code&gt;setState()&lt;/code&gt;が複数回実行されていて、状態に依っては3回以上コールされそうな状態だった。これを直す。&lt;/p&gt;
+
+&lt;h2 id=&#34;開閉処理のチューニング:402495cc9e8356c6486bf32fc091c585&#34;&gt;開閉処理のチューニング&lt;/h2&gt;
+
+&lt;p&gt;ここからローカル環境で色々直していくので本番環境で計測したものとは異なってくる。ローカル環境で計測したチューニング前の結果は以下の状態。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/abematv-runtime-perf-audit/before.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;react-componentの-setstate-を複数回コールしないようにする:402495cc9e8356c6486bf32fc091c585&#34;&gt;React Componentの&lt;code&gt;setState()&lt;/code&gt;を複数回コールしないようにする&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://facebook.github.io/react/docs/component-api.html#setstate&#34;&gt;React Componentの&lt;code&gt;setState()&lt;/code&gt;&lt;/a&gt;は実行される度に&lt;code&gt;render()&lt;/code&gt;が呼ばれる。&lt;code&gt;render()&lt;/code&gt;が呼ばれると、VirtualDOMを生成して現在のものと比較し、diffに応じてHTMLに対してバッチを実行するので、&lt;code&gt;setState()&lt;/code&gt;を不要に実行してはならない。Reactのパフォーマンスが良いというのはHTMLをいざ更新するときにブラウザの仕事を最小限に留めてくれるという話であって、React内部はそれなりの仕事をしてメモリも食うので、取り扱いは慎重にする。&lt;/p&gt;
+
+&lt;p&gt;問題が発生しているコンポーネントでは&lt;code&gt;setState()&lt;/code&gt;を何度も呼ばないように修正出来そう。&lt;code&gt;setState()&lt;/code&gt;の実行を最小限にした状態で計測したのがこちら。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/abematv-runtime-perf-audit/merge-setState.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;実行時間がおよそ半分になっているのがわかる。&lt;/p&gt;
+
+&lt;h3 id=&#34;immutablejsの-tojs-がハイコストなのでなるべくコールしないようにする:402495cc9e8356c6486bf32fc091c585&#34;&gt;ImmutableJSの&lt;code&gt;toJS()&lt;/code&gt;がハイコストなのでなるべくコールしないようにする&lt;/h3&gt;
+
+&lt;p&gt;これも調査中に発覚したことだが、JavaScriptネイティブなデータとImmutableJSなデータへの、&lt;code&gt;toJS()&lt;/code&gt;と&lt;code&gt;fromJS()&lt;/code&gt;による相互変換処理が重い。当然ながらデータの量に比例して更に重くなっていく。&lt;/p&gt;
+
+&lt;p&gt;プロジェクトの元々の設計方針としては、ComponentのstateにはImmutableなデータを格納し、&lt;code&gt;render()&lt;/code&gt;で&lt;code&gt;toJS()&lt;/code&gt;を実行して&lt;code&gt;Map&lt;/code&gt;や&lt;code&gt;List&lt;/code&gt;をJavaScriptネイティブなデータに変換するというものだった。コードは次のようなイメージ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;export default class Component extends React.Component {
+  // stateのデータはImmutableなデータ
+  state = {
+    foo : Map(),
+    bar : List()
+  };
+
+  subscriptions = [];
+
+  componentDidMount() {
+    // FooStoreやBarStoreのsubscribeのコールバックには
+    // Immutableなデータが流れてくるのでそのままsetState()
+    this.subscriptions.push(
+      FooStore.foo$.subscribe(foo =&amp;gt; {
+        this.setState({ foo });
+      })
+    );
+
+    this.subscriptions.push(
+      BarStore.bar$.subscribe(bar =&amp;gt; {
+        this.setState({ bar });
+      })
+    );
+  }
+
+  render() {
+    // render()の度にImmutableなデータをtoJS()
+    let foo = this.state.foo.toJS();
+    let bar = this.state.bar.toJS();
+
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;h1&amp;gt;{foo.text}&amp;lt;/h1&amp;gt;
+        &amp;lt;p&amp;gt;{bar.text}&amp;lt;/p&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;この構造の問題は、FooStoreの変更通知で&lt;code&gt;setState()&lt;/code&gt;している&lt;code&gt;foo&lt;/code&gt;だけでなく、変更されていない&lt;code&gt;bar&lt;/code&gt;も&lt;code&gt;render()&lt;/code&gt;で&lt;code&gt;toJS()&lt;/code&gt;を実行してしまっている点だ。実際にはsubscriptionsはこれよりずっと多いので、更に顕著になる。&lt;/p&gt;
+
+&lt;p&gt;重い重い&lt;code&gt;toJS()&lt;/code&gt;の実行は最低限にしたいので、Componentのstateに入れるデータはJavaScriptネイティブの&lt;code&gt;Object&lt;/code&gt;やら&lt;code&gt;Array&lt;/code&gt;などにして、&lt;code&gt;setState()&lt;/code&gt;でデータを更新する時に対象データだけ&lt;code&gt;toJS()&lt;/code&gt;を実行するようにし、&lt;code&gt;render()&lt;/code&gt;では実行しないように変える。「stateにImmutableなデータを保持するべきかどうか」という設計の話も大事だが、パフォーマンスで実害が出ているので開発者全体に合意を取る。&lt;/p&gt;
+
+&lt;p&gt;変更後イメージは以下の通り。これで&lt;code&gt;toJS()&lt;/code&gt;の実行は必要最低限になった。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;export default class Component extends React.Component {
+  // stateのデータはJavaScriptネイティブなデータ
+  state = {
+    foo : {},
+    bar : []
+  };
+
+  subscriptions = [];
+
+  componentDidMount() {
+    // FooStoreやBarStoreのsubscribeのコールバックには
+    // Immutableなデータが流れてくるのでtoJS()してsetState()
+    this.subscriptions.push(
+      FooStore.foo$.subscribe(foo =&amp;gt; {
+        this.setState({ foo : foo.toJS() });
+      })
+    );
+
+    this.subscriptions.push(
+      BarStore.bar$.subscribe(bar =&amp;gt; {
+        this.setState({ bar : bar.toJS() });
+      })
+    );
+  }
+
+  render() {
+    return (
+      &amp;lt;div&amp;gt;
+        &amp;lt;h1&amp;gt;{this.state.foo.text}&amp;lt;/h1&amp;gt;
+        &amp;lt;p&amp;gt;{this.state.bar.text}&amp;lt;/p&amp;gt;
+      &amp;lt;/div&amp;gt;
+    );
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;諸々修正して計測した結果は以下の通り。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/abematv-runtime-perf-audit/dont-use-Immutable.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;元々130msだったのが9msまで速くなったということで、CPUに優しいプログラムになった。本番へは近日中にリリースされるでしょう。めでたしめでたし。&lt;/p&gt;
+
+&lt;p&gt;※この記事の内容と似たような方針で&lt;a href=&#34;https://abema.tv/timetable&#34;&gt;番組表&lt;/a&gt;のパフォーマンスも色々直したが、効果適面だった。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>IntersectionObserverを使ってlazyload-imageを書き直した</title>
+      <link>https://1000ch.net/posts/2016/intersection-observer-lazyload.html</link>
+      <pubDate>Sun, 15 May 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/intersection-observer-lazyload.html</guid>
+      <description>
+
+&lt;h1 id=&#34;intersectionobserverを使ってlazyload-imageを書き直した:f87e8ed7de5cc2e85a051e9e437df282&#34;&gt;IntersectionObserverを使ってlazyload-imageを書き直した&lt;/h1&gt;
+
+&lt;p&gt;画像をスクロール同期でロードする&lt;a href=&#34;https://1000ch.github.io/lazyload-image/&#34;&gt;&lt;code&gt;&amp;lt;lazyload-image&amp;gt;&lt;/code&gt;&lt;/a&gt;というWeb Componentsの内部処理を、&lt;a href=&#34;https://github.com/WICG/IntersectionObserver&#34;&gt;&lt;code&gt;IntersectionObserver&lt;/code&gt;&lt;/a&gt;で書き直した。&lt;/p&gt;
+
+&lt;h2 id=&#34;可視領域に要素が入っているかどうかの判定:f87e8ed7de5cc2e85a051e9e437df282&#34;&gt;可視領域に要素が入っているかどうかの判定&lt;/h2&gt;
+
+&lt;p&gt;リライトする前までは、要素それぞれに&lt;code&gt;scroll&lt;/code&gt;イベントのリスナを発行して、その中で画面内に要素が表れているかを判定していた。throttleしているとはいえ、それぞれのリスナで以下の処理を行っていたのでややパフォーマンスが気になっていた。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;getBoundingClinetRect()&lt;/code&gt;で要素の矩形を取得する&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;document.documentElement.scrollTop&lt;/code&gt;と&lt;code&gt;document.documentElement.clientHeight&lt;/code&gt;で画面の上下端を取得する&lt;/li&gt;
+&lt;li&gt;要素が可視領域と交差しているかどうかを判定し、交差していたらオリジナルの画像パスを&lt;code&gt;src&lt;/code&gt;に指定する&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;気になるとは言え、こんな感じの判定処理をどこかしらでやらざるを得ないはずで、ネイティブで実装された&lt;code&gt;IntersectionObserver&lt;/code&gt;もブラウザの内部処理は近いことをやっているのではとは思う。&lt;/p&gt;
+
+&lt;h2 id=&#34;intersectionobserverとは:f87e8ed7de5cc2e85a051e9e437df282&#34;&gt;IntersectionObserverとは&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;IntersectionObserver&lt;/code&gt;は要素同士の交差状態の監視を可能にするAPI draftである。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function intersectionChanged(changes) {
+  for (let change of changes) {
+    console.log(change.time);               // 変更が起こったタイムスタンプ
+    console.log(change.rootBounds);         // ルートとなる領域
+    console.log(change.boundingClientRect); // ターゲットの矩形
+    console.log(change.intersectionRect);   // ルートとガーゲットの交差町域
+    console.log(change.intersectionRatio);  // 交差領域がターゲットの矩形に占める割合
+    console.log(change.target);             // ターゲットとなるウピsp
+  }
+}
+
+let observer = new IntersectionObserver(intersectionChanged);
+observer.observe(document.querySelector(&#39;#target&#39;));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ルートは&lt;code&gt;IntersectionObserver&lt;/code&gt;のコンストラクタの第二引数のオプションの&lt;code&gt;root&lt;/code&gt;属性で指定可能で、省略するとブラウザのビューポートとの交差判定が行われる。これがあれば、&lt;code&gt;scroll&lt;/code&gt;イベントを監視して要素同士の重なり具合を地道に判定して…ということがなくなる。やったね！&lt;/p&gt;
+
+&lt;p&gt;パフォーマンスに関して言えば、スクロールイベントの大量発行以上に&lt;code&gt;getBoundingClinetRect()&lt;/code&gt;の実行や&lt;code&gt;document.documentElement.scrollTop&lt;/code&gt;と&lt;code&gt;document.documentElement.clientHeight&lt;/code&gt;へのアクセスのほうが気になっていたので、これがなくなるのは大変良い。&lt;/p&gt;
+
+&lt;h2 id=&#34;lazyload-image-のブラウザ互換性:f87e8ed7de5cc2e85a051e9e437df282&#34;&gt;&lt;code&gt;&amp;lt;lazyload-image&amp;gt;&lt;/code&gt;のブラウザ互換性&lt;/h2&gt;
+
+&lt;p&gt;IntersectionObserverは現時点でChromeにしか実装されていない。リリースノート的にはChromeは51かららしいけど、手元のv50.0.2661.102には入ってるように見える。Operaはバージョン38からだそう。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;lazyload-image&amp;gt;&lt;/code&gt;ではこれに加えて、Web Components関連のAPIを使いまくっているので、動作保証範囲は広くない。が、それはスクロール同期で画像を読み込む機能に関しての話で、未実装ブラウザに関しては通常通り画像を読み込むようにフォールバックするので、それなりに動くのではと思われる。&lt;/p&gt;
+
+&lt;p&gt;実際の動作状態は&lt;a href=&#34;https://1000ch.github.io/lazyload-image/&#34;&gt;デモページ&lt;/a&gt;で確認できる。普通にスクロールすると画像のロードが高速なときにスクロール同期でロードしているかどうかがわかりにくいので、DevToolsを開いた状態で見てもらえるとわかりやすい。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/intersection-observer-lazyload/demo.gif&#34; alt=&#34;lazy load DEMO&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>メッセージングによるService Workerのコントロール</title>
+      <link>https://1000ch.net/posts/2016/service-worker-message.html</link>
+      <pubDate>Fri, 13 May 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/service-worker-message.html</guid>
+      <description>
+
+&lt;h1 id=&#34;メッセージングによるservice-workerのコントロール:238e3693b6f03500fdf98658862a07f7&#34;&gt;メッセージングによるService Workerのコントロール&lt;/h1&gt;
+
+&lt;p&gt;Service Workerでハンドルするリソースは、Service Workerのスクリプトに静的に記述しているケースが多い。Service Workerでやっているアレコレをメッセージングで動的にできないか試行錯誤したログ。&lt;/p&gt;
+
+&lt;h2 id=&#34;よくある-キャッシュパターン:238e3693b6f03500fdf98658862a07f7&#34;&gt;よくある?キャッシュパターン&lt;/h2&gt;
+
+&lt;p&gt;チュートリアル等でもよく見かける、Service Workerのインストール時に指定のリソースをキャッシュしているパターン。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;const CACHE_KEY = &#39;cache-key&#39;;
+const CACHE_LIST = [
+  &#39;index.html&#39;,
+  &#39;app.js&#39;,
+  &#39;app.css&#39;
+];
+
+self.addEventListener(&#39;install&#39;, e =&amp;gt; {
+  // CACHE_KEYをキーにとるCacheオブジェクトを開いて
+  // CACHE_LISTをキャッシュするPromise
+  let promise = caches.open(CACHE_KEY)
+    .then(cache =&amp;gt; cache.addAll(CACHE_LIST))
+    .catch(error =&amp;gt; console.log(error));
+
+  e.waitUntil(promise);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;小さい用途であれば、これで何ら問題はない気はする。開発規模が大きくなってくるとリソースの増加やらで人力でメンテナンスするのが辛くなってくる。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/GoogleChrome/sw-precache&#34;&gt;GoogleChrome/sw-precache&lt;/a&gt;はService Workerのスクリプトを書き出すツールで、キャッシュしたいパスのパターン指定などが可能。これでひとまず人力で管理していくリスクは低減できるが、細かい処理を書くには不向き。なので、Service Workerの処理内容を自由に書く余地を残しつつ、何をキャッシュするかを動的にできないかを模索したところ、手段の1つとしてメッセージングを使う方法が浮かんだ。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;fetch&lt;/code&gt;イベントでリクエスト内容を見て動的に判断するなどはできるが、後述の &lt;strong&gt;Service Workerが最長24時間更新されない問題&lt;/strong&gt; などもあるので、コントロール手段のひとつとして覚えておくのは良さ気。&lt;/p&gt;
+
+&lt;h2 id=&#34;メッセージングでservice-workerのコントロール:238e3693b6f03500fdf98658862a07f7&#34;&gt;メッセージングでService Workerのコントロール&lt;/h2&gt;
+
+&lt;p&gt;Service Workerは&lt;a href=&#34;http://www.html5rocks.com/ja/tutorials/workers/basics/&#34;&gt;JavaScript Worker&lt;/a&gt;のひとつ。なので、ブラウザスレッドとService Workerとでメッセージのやり取りが可能。Cache APIもPromiseな設計なので、&lt;code&gt;e.waitUntil()&lt;/code&gt;もあることだし処理はPromiseで書くと良さ気。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// browser.js
+function sendMessage(message) {
+  return new Promise((resolve, reject) =&amp;gt; {
+    const channel = new MessageChannel();
+    channel.port1.onmessage = e =&amp;gt; {
+      if (e.data.error) {
+        reject(e.data.error);
+      } else {
+        resolve(e.data);
+      }
+    };
+
+    navigator.serviceWorker.controller.postMessage(message, [channel.port2]);
+  });
+}
+
+sendMessage(&#39;A message to Service Worker!&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// service-worker.js
+self.addEventListener(&#39;message&#39;, e =&amp;gt; {
+  let promise = Promise.resolve()
+    .then(() =&amp;gt; {
+      console.log(e.data);
+      // e.dataにメッセージの内容が入ってる
+    })
+    .catch(error =&amp;gt; {
+      console.error(error);
+    });
+
+  e.waitUntil(promise);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;例えば、ブラウザから送るメッセージを&lt;code&gt;{ command : &#39;add&#39;, url : &#39;app.css&#39; }&lt;/code&gt;なオブジェクトにすれば、&lt;code&gt;e.data.command&lt;/code&gt;で&lt;code&gt;switch&lt;/code&gt;するなどして、メッセージの内容に応じた処理も可能。実際にこのメッセージを元に&lt;code&gt;app.css&lt;/code&gt;をキャッシュさせる実装をすると次のようになる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// browser.js
+sendMessage({
+  command : &#39;add&#39;,
+  url     : &#39;app.css&#39;
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;// service-worker.js
+self.addEventListener(&#39;message&#39;, e =&amp;gt; {
+  let promise = caches.open(&#39;cache-key&#39;)
+    .then(() =&amp;gt; {
+      let command = e.data.command; // add
+      let url = e.data.url;         // app.css
+      switch (command) {
+        case &#39;add&#39;:
+          // app.css のリクエストオブジェクト
+          let request = new Request(url);
+
+          // fetch() してレスポンスをキャッシュに格納する
+          return fetch(request)
+            .then(response =&amp;gt; cache.put(url, response));
+        default:
+          return Promise.resolve();
+      }
+    })
+    .catch(error =&amp;gt; {
+      console.error(error);
+    });
+
+  e.waitUntil(promise);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こんな感じで、キャッシュのリソース追加だけでなくリソース削除やキャッシュそのものの削除まで出来ることを確認した。&lt;/p&gt;
+
+&lt;h2 id=&#34;使いどころ:238e3693b6f03500fdf98658862a07f7&#34;&gt;使いどころ&lt;/h2&gt;
+
+&lt;p&gt;メッセージングでリソースの追加・削除をする不都合は、 &lt;strong&gt;何をキャッシュさせているか&lt;/strong&gt; を管理しにくくなるところか。キャッシュにヒットするかどうかだけなら&lt;code&gt;fetch&lt;/code&gt;イベント内でハンドルすれば十分だが、Service Workerはブラウザが必要に応じて起動・終了するので、メッセージの内容を変数に格納して保持しておくことは出来ない。やるならIndexedDBを使うことになりそうだが、キャッシュリストの管理のために、Cache APIとIndexedDBを併用するのも微妙に思う。&lt;/p&gt;
+
+&lt;p&gt;Service Workerで唯一使いにくい可能性があるのは、&lt;a href=&#34;http://blog.nhiroki.jp/2015/06/22/service-worker-update&#34;&gt;Service Worker自体の更新チェックが最大24時間になってしまう点&lt;/a&gt;。Service Worker自体に更新があるかどうかは&lt;a href=&#34;https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-registration-update-method&#34;&gt;&lt;code&gt;ServiceWorkerRegistration#update()&lt;/code&gt;&lt;/a&gt;を介してチェックが可能だが、Cache-Controlで長生き設定されていると、たとえページロードのタイミングで毎回呼んだとしてもブラウザキャッシュが効いてしまう（長生き設定しなければ良いという話でもあるんだけど）。&lt;/p&gt;
+
+&lt;p&gt;その点、メッセージ経由でキャッシュの全クリアとかもできるので、&lt;code&gt;purge&lt;/code&gt;コマンドを用意して失敗ビルドを配信してキャッシュされてしまったような状況に備えるのは悪くないかもしれない。パージの他にも、キャッシュ追加・キャッシュ削除・キャッシュリストの取得といった処理のミニマム実装は&lt;a href=&#34;https://github.com/1000ch/sw-sandbox&#34;&gt;1000ch/sw-sandbox&lt;/a&gt;にあげた。&lt;/p&gt;
+
+&lt;p&gt;良い使い方が浮かんだら書き足す。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>D3.jsでColor Pickerを作った</title>
+      <link>https://1000ch.net/posts/2016/color-picker.html</link>
+      <pubDate>Mon, 02 May 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/color-picker.html</guid>
+      <description>
+
+&lt;h1 id=&#34;d3-jsでcolor-pickerを作った:1c884fb5acc7b61b10a8541d0b5dbd1a&#34;&gt;D3.jsでColor Pickerを作った&lt;/h1&gt;
+
+&lt;p&gt;D3.jsの素振りをしていて、何か練習台になるものはと探していたら&lt;a href=&#34;https://www.smashingmagazine.com/2016/04/web-developer-guide-color/&#34;&gt;A Simple Web Developer’s Guide To Color&lt;/a&gt;で&lt;a href=&#34;https://dribbble.com/colors/&#34;&gt;Dribbble&lt;/a&gt;やら&lt;a href=&#34;http://designspiration.net/&#34;&gt;Designspiration&lt;/a&gt;にあるようなカラーピッカーが紹介されていたので、真似て&lt;a href=&#34;https://1000ch.github.io/color-picker/&#34;&gt;Color Picker&lt;/a&gt;を実装した。機能としては、予め用意してある色がパレットのように陳列されていて、クリックするとそのカラーコードをコピー出来るという単純なもの。ある程度整頓された色の中から選んで使いたいことは多々あったので、その個人的な問題はコレで解決できそう。&lt;/p&gt;
+
+&lt;p&gt;クリックでコピーできる機能については&lt;a href=&#34;https://clipboardjs.com/&#34;&gt;clipboard.js&lt;/a&gt;を使っているのでFlashに依存していない代わりに、&lt;code&gt;execCommand&lt;/code&gt;がアレなSafariではコピーは機能しない。&lt;/p&gt;
+
+&lt;h2 id=&#34;d3-js雑感:1c884fb5acc7b61b10a8541d0b5dbd1a&#34;&gt;D3.js雑感&lt;/h2&gt;
+
+&lt;p&gt;少ししか触っていないけど、以下雑感。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;D3.jsはデータに応じたDOM操作を担うライブラリでありデータビジュアライズ専用のライブラリではない&lt;/li&gt;
+&lt;li&gt;結果的にSVGとの相性が良いがそれはビジュアライゼーションでの話であって、HTMLにももちろん活用できる&lt;/li&gt;
+&lt;li&gt;提供しているAPIはjQueryに似ているが、&lt;a href=&#34;https://d3js.org/#selections&#34;&gt;Selections&lt;/a&gt;の概念は通じないものがある&lt;/li&gt;
+&lt;li&gt;データに応じる柔軟なビジュアライゼーションをするべきであり、プログラム（アルゴリズム）力が要求される（普段のWebフロントエンド開発では使わない頭を使った気がする…）&lt;/li&gt;
+&lt;li&gt;作者や有志による&lt;a href=&#34;http://ja.d3js.info/alignedleft/tutorials/d3/&#34;&gt;チュートリアル&lt;/a&gt;や&lt;a href=&#34;https://github.com/mbostock/d3/wiki/Gallery&#34;&gt;D3.jsを使ったギャラリー&lt;/a&gt;がとても良く出来ている&lt;/li&gt;
+&lt;li&gt;かなり綺麗に抽象化されたAPIだが、あくまでデータとDOMの仲介者。↑のようなのを描くにはSVGの知識もある程度必要&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;次のコードはコアAPIの簡単な使い方。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;const svg = d3.select(&#39;body&#39;)       // bodyを参照する
+  .append(&#39;svg&#39;)                    // svgをappend()し、参照する
+  .attr(&#39;width&#39;, &#39;100vw&#39;)           // widthに100vwを指定する
+  .attr(&#39;height&#39;, &#39;100vh&#39;);         // heightに100vhを指定する
+
+const rects = svg.selectAll(&#39;rect&#39;) // svg要素下のrectを参照するが、この時点では何もない
+  .data([10, 20, 30, 40, 50])       // selectAll()によるセレクションに対してデータをバインドする
+  .enter()                          // セレクションにバインドしたデータの数だけプレースホルダーを作る
+  .append(&#39;rect&#39;)                   // プレースホルダーにrectをappend()する
+  .attr(&#39;width&#39;, d =&amp;gt; d)            // バインドしたデータのひとつひとつをwidthに指定する
+  .attr(&#39;height&#39;, d =&amp;gt; d)           // バインドしたデータのひとつひとつをheightに指定する
+  .attr(&#39;x&#39;, (d, i) =&amp;gt; 100 * i)     // 第2引数にはインデックスが返るので、これを使ってx座標は100ずつずらす
+  .attr(&#39;y&#39;, 0)                     // y座標に0を指定し、上に揃える
+  .attr(&#39;fill&#39;, d =&amp;gt; `rgb(${d}, ${d * 2}, ${d * 3})`);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで次のようなSVGが出力される。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;svg width=&amp;quot;100vw&amp;quot; height=&amp;quot;100vh&amp;quot;&amp;gt;
+  &amp;lt;rect width=&amp;quot;10&amp;quot; height=&amp;quot;10&amp;quot; x=&amp;quot;0&amp;quot; y=&amp;quot;0&amp;quot; fill=&amp;quot;rgb(10, 20, 30)&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;
+  &amp;lt;rect width=&amp;quot;20&amp;quot; height=&amp;quot;20&amp;quot; x=&amp;quot;100&amp;quot; y=&amp;quot;0&amp;quot; fill=&amp;quot;rgb(20, 40, 60)&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;
+  &amp;lt;rect width=&amp;quot;30&amp;quot; height=&amp;quot;30&amp;quot; x=&amp;quot;200&amp;quot; y=&amp;quot;0&amp;quot; fill=&amp;quot;rgb(30, 60, 90)&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;
+  &amp;lt;rect width=&amp;quot;40&amp;quot; height=&amp;quot;40&amp;quot; x=&amp;quot;300&amp;quot; y=&amp;quot;0&amp;quot; fill=&amp;quot;rgb(40, 80, 120)&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;
+  &amp;lt;rect width=&amp;quot;50&amp;quot; height=&amp;quot;50&amp;quot; x=&amp;quot;400&amp;quot; y=&amp;quot;0&amp;quot; fill=&amp;quot;rgb(50, 100, 150)&amp;quot;&amp;gt;&amp;lt;/rect&amp;gt;
+&amp;lt;/svg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;コアの使い方を覚えてからは、&lt;a href=&#34;https://github.com/mbostock/d3/wiki/Layouts&#34;&gt;Layouts&lt;/a&gt;というデータレイアウトの手段を見始めていて、これにはノード同士の物理シミュレーションを行う&lt;a href=&#34;https://github.com/mbostock/d3/wiki/Force-Layout&#34;&gt;Force&lt;/a&gt;やノード同士の階層構造を表現する&lt;a href=&#34;https://github.com/mbostock/d3/wiki/Pack-Layout&#34;&gt;Pack&lt;/a&gt;などが含まれている。これらが理解できてくるといよいよD3が本領発揮できそうだが、理系脳がだいぶ眠っているのでまずはリハビリから。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Webのプロダクト開発に関わる人が読むべき5冊の本</title>
+      <link>https://1000ch.net/posts/2016/recommend-books.html</link>
+      <pubDate>Fri, 01 Apr 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/recommend-books.html</guid>
+      <description>
+
+&lt;h1 id=&#34;webのプロダクト開発に関わる人が読むべき5冊の本:25b072f41099de827668807213551568&#34;&gt;Webのプロダクト開発に関わる人が読むべき5冊の本&lt;/h1&gt;
+
+&lt;p&gt;タイトルがなんか釣りっぽい。特定のWeb技術に関する本ではなく、Web開発に関わるあらゆる職域の人が読むべきと僕が考えている5冊を挙げてみる。結果的に鉄板の5冊に着地している。&lt;/p&gt;
+
+&lt;p&gt;表題にはデザイン・マネジメント・ハッカー・パフォーマンスというワードが並んでいる。トピックが散らかっているようにも見えるけどWebに従事する以上横断的な知識は備えているべきで、「エンジニアだからデザインの知識は…」や「デザイナーだからWebパフォーマンスの知識は…」というのは怠慢だと思っている。…と言っても、別に皆がフルスタックになるべきと言いたいわけではなく、隣の職能を理解する努力は自分の職能を理解するためにも必要という話。&lt;/p&gt;
+
+&lt;h2 id=&#34;誰のためのデザイン-認知科学者のデザイン原論:25b072f41099de827668807213551568&#34;&gt;誰のためのデザイン ― 認知科学者のデザイン原論&lt;/h2&gt;
+
+&lt;p&gt;自分はデザイナーに分類されるスキルは持ち合わせていない。が、Webの仕事に3年程従事する中で、開発やモノづくりのプロセスについて考える機会がそれなりにある。&lt;/p&gt;
+
+&lt;iframe src=&#34;https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=4788514346&amp;ref=qf_sp_asin_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr&#34; style=&#34;width:120px;height:240px;&#34; scrolling=&#34;no&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&#34;how-google-works-私たちの働き方とマネジメント:25b072f41099de827668807213551568&#34;&gt;How Google Works ― 私たちの働き方とマネジメント&lt;/h2&gt;
+
+&lt;p&gt;Googleが世界一の企業になるまでに、どのような成長過程を辿ったかが綴られている。ラリー・ペイジ（共同創業者）とセルゲイ・ブリン（共同創業者）を始めとした人物が、何に重きを置き重要であると考えてきたか。&lt;/p&gt;
+
+&lt;iframe src=&#34;https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=4532319552&amp;ref=qf_sp_asin_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr&#34; style=&#34;width:120px;height:240px;&#34; scrolling=&#34;no&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&#34;ハッカーと画家-コンピュータ時代の創造者たち:25b072f41099de827668807213551568&#34;&gt;ハッカーと画家 コンピュータ時代の創造者たち&lt;/h2&gt;
+
+&lt;p&gt;自分がエンジニアだから面白いのかもしれないけど、ソフトウェア・エンジニアリングに対する考え方はこれで大きく変わった。あと「ものつくりのセンス」という章もオススメである。&lt;/p&gt;
+
+&lt;iframe src=&#34;https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=4274065979&amp;ref=qf_sp_asin_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr&#34; style=&#34;width:120px;height:240px;&#34; scrolling=&#34;no&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&#34;続-ハイパフォーマンスwebサイト:25b072f41099de827668807213551568&#34;&gt;続・ハイパフォーマンスWebサイト&lt;/h2&gt;
+
+&lt;p&gt;2010年4月に発行された本ということで各セオリーは変わりつつあるが、Webのパフォーマンスの最適化原則を満遍なく得るには良い本である。ビジネスゴールに向かう過程でWebパフォーマンスは未だに軽視されがちだが、速いWebが正義であることは数々の研究調査結果にも表れているし、Chromeがシェアを伸ばしてきた根底にはコレがある。&lt;/p&gt;
+
+&lt;iframe src=&#34;https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=4873114462&amp;ref=qf_sp_asin_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr&#34; style=&#34;width:120px;height:240px;&#34; scrolling=&#34;no&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&#34;リーン-スタートアップ:25b072f41099de827668807213551568&#34;&gt;リーン・スタートアップ&lt;/h2&gt;
+
+&lt;p&gt;「金持ち父さん貧乏父さん」を挙げようとしたらもはやWeb開発と関係なくなってるので、起動を戻して最近読んだ本を紹介。スタートアップという言葉が使われているけど、スタートアップベンチャーに限った話ではなく、モノづくりのプロセスであれば充てがえる話。&lt;/p&gt;
+
+&lt;p&gt;PDCAを最大限小さく回す。効果検証を適切に行う。顧客と価値の模索。&lt;/p&gt;
+
+&lt;iframe src=&#34;https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=4822248976&amp;ref=qf_sp_asin_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr&#34; style=&#34;width:120px;height:240px;&#34; scrolling=&#34;no&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PinFeed for Pinboard</title>
+      <link>https://1000ch.net/posts/2016/pinfeed-for-pinboard.html</link>
+      <pubDate>Mon, 28 Mar 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/pinfeed-for-pinboard.html</guid>
+      <description>
+
+&lt;h1 id=&#34;pinfeed-for-pinboard:c8fb3fd7e9f515f9c633dec026c6713d&#34;&gt;PinFeed for Pinboard&lt;/h1&gt;
+
+&lt;p&gt;趣味で作っていたiOSアプリが完成したので、&lt;a href=&#34;https://itunes.apple.com/app/id1090705533&#34;&gt;AppStoreで公開した&lt;/a&gt;。PinFeedという名前でお察しの通り、Pinboardのラッパーアプリ。巷のPinboardアプリだと&lt;a href=&#34;http://pinnerapp.net/&#34;&gt;Pinner&lt;/a&gt;あたりがデファクトかもしれないけど、使い心地にそこまで満足してなかったのと、&lt;a href=&#34;https://1000ch.net/posts/2015/webponize-is-released.html&#34;&gt;Macアプリを作った延長&lt;/a&gt;でSwiftの勉強をまたやろうということで作った。&lt;/p&gt;
+
+&lt;p&gt;最新のリリースバージョンはv1.0.1だが、初回申請時は思っていたより面倒くさいこと続きだった。特にキャプチャを画面サイズ毎に用意しなくてはならず、シミュレータを切り替えてはキャプチャをとって、Sketchでサイズを調整を繰り返した。もうやりたくない。けど、UI変えたらやらなきゃいけない。&lt;/p&gt;
+
+&lt;p&gt;申請してからIn Reviewになるまで丸1週間かかったが、レビューに入ってからはたった20分で通過した。趣味のアプリなので、自分（ユーザー）にとっての使いやすさを追求していく作業を自由に出来るのはそれなりに楽しい。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Dyson V6 Fluffy</title>
+      <link>https://1000ch.net/posts/2016/dyson-v6-fluffy.html</link>
+      <pubDate>Sat, 26 Mar 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/dyson-v6-fluffy.html</guid>
+      <description>
+
+&lt;h1 id=&#34;dyson-v6-fluffy:b60641e1a95bec823505b0c649ae149e&#34;&gt;Dyson V6 Fluffy&lt;/h1&gt;
+
+&lt;p&gt;今まで床の掃除をクイックルワイパーで運用していたが、&lt;a href=&#34;https://goo.gl/maps/GJAIK&#34;&gt;表参道のdyson&lt;/a&gt;で圧倒的なデモンストレーションを見せつけられて、まんまと購入。&lt;/p&gt;
+
+&lt;h2 id=&#34;仕様:b60641e1a95bec823505b0c649ae149e&#34;&gt;仕様&lt;/h2&gt;
+
+&lt;p&gt;本体重量は2.34kg。軽くはないけど、重くもない。コードレスクリーナーに分類される掃除機であればこの程度の重さなんだろうか。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/dyson-v6-fluffy/dyson-v6-fluffy.jpg&#34; alt=&#34;Dyson V6 Fluffy&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;稼働は連続約20分に対してフル充電に3時間半程かかるが、広い家全部を一気に掃除する等でなければ掃除に20分間もかからない。&lt;/p&gt;
+
+&lt;p&gt;あと、Dyson V6 Fluffyにはメインのヘッドに加えて、ミニモーターヘッドとコンビネーションノズルと隙間ノズルのヘッドが付いてくるので、用途に応じてヘッドを変えれる。 &lt;strong&gt;dysonはヘッドの別売りをしていない&lt;/strong&gt; ので、モデル毎にどういうヘッドが付いてくるのかを確認したほうが良い。&lt;/p&gt;
+
+&lt;p&gt;詳細なスペックは&lt;a href=&#34;http://www.dyson.co.jp/dyson-vacuums/cordless/dyson-v6/dyson-v6-fluffy.aspx&#34;&gt;公式サイト&lt;/a&gt;を確認のこと。&lt;/p&gt;
+
+&lt;h2 id=&#34;感想:b60641e1a95bec823505b0c649ae149e&#34;&gt;感想&lt;/h2&gt;
+
+&lt;p&gt;憧れのdysonということで吸引力も然ることながら、デザインもお洒落で気に入っている。見た目がかっこ良くないと使う気が起きない自分にとっては結構重要な要素である。&lt;/p&gt;
+
+&lt;p&gt;安い買い物ではないけど、数回の使用で既に値段分の対価は得られている実感がある。&lt;a href=&#34;https://1000ch.net/posts/2015/panasonic-petit-drum.html&#34;&gt;ドラム式洗濯乾燥機&lt;/a&gt;を買った時も思ったけど、文明の利器に頼るのも中々良いものだ。物理で殴るとはたぶんこういうことだろう。&lt;/p&gt;
+
+&lt;iframe src=&#34;https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=B00XHCML9G&amp;ref=qf_sp_asin_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr&#34; style=&#34;width:120px;height:240px;&#34; scrolling=&#34;no&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>QCY QY8 ワイヤレスイヤホン</title>
+      <link>https://1000ch.net/posts/2016/qcy-qy8.html</link>
+      <pubDate>Thu, 24 Mar 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/qcy-qy8.html</guid>
+      <description>
+
+&lt;h1 id=&#34;qcy-qy8-ワイヤレスイヤホン:994dda135e8b7383cfaab5280351c38e&#34;&gt;QCY QY8 ワイヤレスイヤホン&lt;/h1&gt;
+
+&lt;p&gt;このスペックでこの価格はどうなのと若干疑いつつ、ポチってみたらとても良かった。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Bluetooth 4.1&lt;/li&gt;
+&lt;li&gt;マイク内蔵&lt;/li&gt;
+&lt;li&gt;ノイズキャンセリング
+− 防水 / 防汗&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ヘッドホンは&lt;a href=&#34;http://www.amazon.co.jp/dp/B00Q8KG49W/?tag=1000ch-22&#34;&gt;Parrot Zik2.0&lt;/a&gt;を使っているが、ランニング時に使うには重いのでこちらを購入。軽いし、Bluetoothの性能も充分だし、イヤホン部のフィット感もまずまず（ランニング時にはまだ試していない）。&lt;/p&gt;
+
+&lt;p&gt;音周りも不満はない。流石にParrot Zik2.0と比べると劣る気がするけど、このワイヤレスイヤホンで余程音質にこだわる利用シーンも浮かばないので、大半の人は大丈夫だと思われる。&lt;/p&gt;
+
+&lt;iframe src=&#34;https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=B013U094TY&amp;ref=qf_sp_asin_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr&#34; style=&#34;width:120px;height:240px;&#34; scrolling=&#34;no&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>FlexboxでCSSのグリッドフレームワークの再発明</title>
+      <link>https://1000ch.net/posts/2016/flexbox-grid.html</link>
+      <pubDate>Wed, 16 Mar 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/flexbox-grid.html</guid>
+      <description>
+
+&lt;h1 id=&#34;flexboxでcssのグリッドフレームワークの再発明:0aa0877ce5499aa0c788cb4aa89773d5&#34;&gt;FlexboxでCSSのグリッドフレームワークの再発明&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://1000ch.github.io/grd/&#34;&gt;Grd&lt;/a&gt;というFlexboxを使ったCSSグリッドフレームワークを使った。Flexboxで実装しているグリッドフレームワークは既にたくさんあるし、何かに困ったからというわけでもなく、 &lt;strong&gt;もし自分が実装したらどうなるかなー&lt;/strong&gt; くらいのノリで作った。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/flexbox-grid/logo.png&#34; alt=&#34;Grd&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://1000ch.net/posts/2016/display-grid.html&#34;&gt;将来的には&lt;code&gt;display: grid;&lt;/code&gt;があったりする&lt;/a&gt;けど、多機能な分、使い方が少し複雑である。なので、これはこれで需要があるかもしれないし、ないかもしれない。使い方は&lt;a href=&#34;https://github.com/1000ch/grd&#34;&gt;1000ch/grd&lt;/a&gt;のREADMEを参照のこと。&lt;/p&gt;
+
+&lt;h2 id=&#34;セレクタの命名規則の経緯-余談:0aa0877ce5499aa0c788cb4aa89773d5&#34;&gt;セレクタの命名規則の経緯（余談）&lt;/h2&gt;
+
+&lt;p&gt;しばし悩んだが、最終的に&lt;code&gt;-modifier&lt;/code&gt;というハイフン1つをプレフィックスにした命名に落ち着いた。&lt;code&gt;modifier&lt;/code&gt;と言うだけでBEM感が出るの、どうしようもない。&lt;/p&gt;
+
+&lt;h3 id=&#34;modifier:0aa0877ce5499aa0c788cb4aa89773d5&#34;&gt;&lt;code&gt;--modifier&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;BEMの影響で &lt;strong&gt;&lt;code&gt;--&lt;/code&gt;で始まるセレクタをmodifierと理解しやすい&lt;/strong&gt; というのが一番の理由で、開発当初はこれだった。&lt;a href=&#34;https://www.w3.org/TR/CSS21/syndata.html#characters&#34;&gt;スペック的にはダメ&lt;/a&gt;だがモダンブラウザ達は&lt;code&gt;--&lt;/code&gt;で始まってても一応解釈してくれるので、これでもいいかみたいな。が、カスタムプロパティ周りとバッティングしても微妙かと思い直し、再考し始める。&lt;/p&gt;
+
+&lt;h3 id=&#34;class-modifier:0aa0877ce5499aa0c788cb4aa89773d5&#34;&gt;&lt;code&gt;Class--modifier&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;BEMの影響で一般的にすらなりつつある(?)、ベースクラスをプレフィックスとしてハイフン2つで繋ぐスタイル。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div class=&amp;quot;Grid Grid--left&amp;quot;&amp;gt;
+  &amp;lt;div class=&amp;quot;Cell Cell--2of12&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;div class=&amp;quot;Cell Cell--2of12&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;div class=&amp;quot;Cell Cell--8of12&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ベースクラスがどれかを容易に連想できてわかりやすいが、少し冗長かなという。&lt;/p&gt;
+
+&lt;p&gt;あとは、&lt;code&gt;Grid--left&lt;/code&gt;や&lt;code&gt;Cell--8of12&lt;/code&gt;のように単一クラスで成立するようにするアイデアもある。最初はこれは一番シンプルかと思っていたが、共有するスタイルが全てのベースクラスに書かれるので無駄が多い。どちらにも対応可能なように基底となるルール群は&lt;code&gt;:root&lt;/code&gt;にルールを切り出して、&lt;a href=&#34;https://github.com/pascalduez/postcss-apply&#34;&gt;postcss-apply&lt;/a&gt;で変換するようにしている。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://tabatkins.github.io/specs/css-apply-rule/&#34;&gt;CSS @apply Rule&lt;/a&gt;が現実味を帯びれば、PostCSSナシで出来るようになってとても良い。もし帯びれば、の話だが。&lt;/p&gt;
+
+&lt;h3 id=&#34;modifier-1:0aa0877ce5499aa0c788cb4aa89773d5&#34;&gt;&lt;code&gt;modifier&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;グリッド上のセルを右寄せにする&lt;code&gt;--right&lt;/code&gt;というmodifierがあるが、これを&lt;code&gt;right&lt;/code&gt;と書くのは流石に攻め過ぎかなと自重した。あるいは&lt;code&gt;pull-right&lt;/code&gt;のようにルールセットの意図をより表現するセレクタにする案もあるが、冗長になりそう+綺麗な命名が浮かばなかったのでボツになった。&lt;/p&gt;
+
+&lt;h3 id=&#34;modifier-2:0aa0877ce5499aa0c788cb4aa89773d5&#34;&gt;&lt;code&gt;__modifier&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;BEMの影響で要素感が凄くてボツになった。スペック的にも問題ないし、エディタ上でダブルクリックして選択できるし、案外良い気がしているが。&lt;/p&gt;
+
+&lt;h3 id=&#34;modifier-3:0aa0877ce5499aa0c788cb4aa89773d5&#34;&gt;&lt;code&gt;-modifier&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;modifierぽさが無くなっている気もするけど、これは個人の感想というかBEMの認知度に左右される話だし、プロジェクトのクラスと上書きし合う可能性も低いはずだし、出たアイデアの中で違和感が最も少なかったのでこれに着地した。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CSS Grid Layout Moduleについて調べたメモ</title>
+      <link>https://1000ch.net/posts/2016/display-grid.html</link>
+      <pubDate>Sat, 12 Mar 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/display-grid.html</guid>
+      <description>
+
+&lt;h1 id=&#34;css-grid-layout-moduleについて調べたメモ:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;CSS Grid Layout Moduleについて調べたメモ&lt;/h1&gt;
+
+&lt;p&gt;CSSによるレイアウトの問題はFlexboxでほとんどが解決されたと言って良いが、複雑なグリッドレイアウトを実現するために&lt;a href=&#34;https://www.w3.org/TR/css3-grid-layout/&#34;&gt;CSS Grid Layout Module&lt;/a&gt;の策定が進められている。&lt;code&gt;display: grid;&lt;/code&gt;ないし&lt;code&gt;display: inline-grid;&lt;/code&gt;といったように、&lt;code&gt;display&lt;/code&gt;プロパティに値が追加されており、それらが指定された要素はブロック要素またはインライン要素のように振る舞い、内包されるコンテンツがグリッドモデルに従ってレイアウトされる。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://caniuse.com/#search=grid&#34;&gt;Chromeは50から、Firefoxは46から対応している&lt;/a&gt;が、Chromeは現安定バージョンの49でも&lt;code&gt;chrome://flags/&lt;/code&gt;で&lt;code&gt;Experimental Web Platform features&lt;/code&gt;を有効にすれば使える。&lt;/p&gt;
+
+&lt;p&gt;そんな&lt;code&gt;display: grid;&lt;/code&gt;について調べたメモ。&lt;/p&gt;
+
+&lt;h2 id=&#34;大まかな構造:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;大まかな構造&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;display: grid;&lt;/code&gt;によって定義されるグリッド要素と、その子要素として配置されるセルから構成する。例えば、よくあるヘッダー・フッター・メインコンテンツ・サイドカラムがあるページ構造を作るとすると、次のようなHTMLとCSSになる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;main&amp;gt;
+  &amp;lt;header&amp;gt;Header&amp;lt;/header&amp;gt;
+  &amp;lt;article&amp;gt;Article&amp;lt;/article&amp;gt;
+  &amp;lt;aside&amp;gt;Aside&amp;lt;/aside&amp;gt;
+  &amp;lt;footer&amp;gt;Footer&amp;lt;/footer&amp;gt;
+&amp;lt;/main&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;main {
+  display: grid;
+  grid-template-rows: 50px 1fr 50px;
+  grid-template-columns: 100px 1fr;
+}
+
+header {
+  grid-row: 1 / 2;
+  grid-column: 1 / 3;
+}
+
+aside {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}
+
+article {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+
+footer {
+  grid-row: 3 / 4;
+  grid-column: 1 / 3;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p data-height=&#34;200&#34; data-theme-id=&#34;0&#34; data-slug-hash=&#34;oxzEBa&#34; data-default-tab=&#34;result&#34; data-user=&#34;1000ch&#34; class=&#34;codepen&#34;&gt;See the Pen &lt;a href=&#34;http://codepen.io/1000ch/pen/oxzEBa/&#34;&gt;oxzEBa&lt;/a&gt; by 1000ch (&lt;a href=&#34;http://codepen.io/1000ch&#34;&gt;@1000ch&lt;/a&gt;) on &lt;a href=&#34;http://codepen.io&#34;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;レイアウトは子要素の順序に依存しない:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;レイアウトは子要素の順序に依存しない&lt;/h3&gt;
+
+&lt;p&gt;見ての通り、グリッド要素下のセル要素の&lt;code&gt;grid-row&lt;/code&gt;や&lt;code&gt;grid-column&lt;/code&gt;によってどういった領域を占めるかが決定されるので、HTMLの記述順序は直接影響しない。&lt;/p&gt;
+
+&lt;h3 id=&#34;fr-とはなんぞ:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;&lt;code&gt;fr&lt;/code&gt;とはなんぞ&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;1fr&lt;/code&gt;という記述があるが、&lt;code&gt;display: grid;&lt;/code&gt;が指定された要素に対して有効な単位で、要素内の可用領域のうち占める割合を表す。&lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/CSS/flex-grow&#34;&gt;Flexboxの&lt;code&gt;flex-grow&lt;/code&gt;&lt;/a&gt;と同じような振る舞いをすると理解してもらえれば良さそう。&lt;/p&gt;
+
+&lt;h2 id=&#34;グリッドを定義する-grid-template-rows-grid-template-columns:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;グリッドを定義する - &lt;code&gt;grid-template-rows&lt;/code&gt;・&lt;code&gt;grid-template-columns&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;display: grid;&lt;/code&gt;を指定した要素に、行と列を定義するのが&lt;code&gt;grid-template-rows&lt;/code&gt;と&lt;code&gt;grid-template-columns&lt;/code&gt;で、高さおよび横幅をそれぞれスペース区切りで指定する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.grid {
+  display: grid;
+  grid-template-rows: 100px 50px;
+  grid-template-columns: 100px 150px 50px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで2行×3列のグリッドが定義される。&lt;/p&gt;
+
+&lt;h3 id=&#34;セル領域の名前-grid-template-areas:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;セル領域の名前 - &lt;code&gt;grid-template-areas&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;grid-template-rows&lt;/code&gt;と&lt;code&gt;grid-template-columns&lt;/code&gt;によってグリッドの格子が定義されるが、生成されたセルにも&lt;code&gt;grid-template-areas&lt;/code&gt;プロパティで名前を付けることが可能。先程の2行×3列のグリッドのセルにそれぞれ名前をつけると以下のようになる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.grid {
+  display: grid;
+  grid-template-rows: 100px 50px;
+  grid-template-columns: 100px 150px 50px;
+  grid-template-areas: &#39;area-a area-a area-b&#39;
+                       &#39;area-c area-d area-d&#39;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;同じ名前をつけていると1つの領域として扱われる。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/display-grid/display-grid-named-area.svg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;grid-template-のショートハンド-grid-template:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;&lt;code&gt;grid-template-*&lt;/code&gt;のショートハンド - &lt;code&gt;grid-template&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;grid-template-rows&lt;/code&gt;・&lt;code&gt;grid-template-columns&lt;/code&gt;・&lt;code&gt;grid-template-areas&lt;/code&gt;は以下のようにまとめられる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.grid {
+  display: grid;
+  grid-template-rows: 100px 50px;
+  grid-template-columns: 100px 150px 50px;
+  grid-template-areas: &#39;area-a area-a area-b&#39;
+                       &#39;area-c area-d area-d&#39;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;区切り線の名前:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;区切り線の名前&lt;/h3&gt;
+
+&lt;p&gt;ここで区切り線と言っているのはグリッドを構成するための上下左右のセル分割線のことで、セルが1つのときは上下に1本ずつ・左右に1本ずつ存在することになる。したがって、先程の2行×3列のグリッドであれば、行には3本・列には4本である。この区切り線の内包するセルの振る舞いを決める上でとても重要である。区切り線は以下のように採番される。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/display-grid/display-grid-positive.svg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;この区切り線には&lt;code&gt;[name]&lt;/code&gt;のように名前をつけることができる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.grid {
+  display: grid;
+  grid-template-rows: [row-a] 100px [row-b] 50px [row-c];
+  grid-template-columns: [column-a] 100px [column-b] 150px [column-c] 50px [column-d];
+  grid-template-areas: &#39;area-a area-a area-b&#39;
+                       &#39;area-c area-d area-d&#39;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;セルの暗黙的生成-grid-auto-rows-grid-auto-columns:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;セルの暗黙的生成 - &lt;code&gt;grid-auto-rows&lt;/code&gt;・&lt;code&gt;grid-auto-columns&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;grid-template&lt;/code&gt;を使うことでセルが明示的に定義されるが、後述の&lt;code&gt;grid-row&lt;/code&gt;や&lt;code&gt;grid-column&lt;/code&gt;によって、定義されていないセルを指定された場合にも暗黙的にセルが配置される。その時に、セルの縦横サイズを決定するのが&lt;code&gt;grid-auto-rows&lt;/code&gt;と&lt;code&gt;grid-auto-columns&lt;/code&gt;である。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.grid {
+  display: grid;
+  grid-template-rows: [row-a] 100px [row-b] 50px [row-c];
+  grid-template-columns: [column-a] 100px [column-b] 150px [column-c] 50px [column-d];
+  grid-template-areas: &#39;area-a area-a area-b&#39;
+                       &#39;area-c area-d area-d&#39;;
+  grid-auto-rows: 50px;
+  grid-auto-columns: 50px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;セルの自動配置-grid-auto-flow:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;セルの自動配置 - &lt;code&gt;grid-auto-flow&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;後述のセルのレイアウトプロパティによって、位置が決定しないグリッド配下の要素がどのように配置されるかを決定するのが&lt;code&gt;grid-auto-flow&lt;/code&gt;で、行列を追加して作られた空きセル対して要素を埋めていく。セルが満タンの場合に、行追加を行うのが&lt;code&gt;row&lt;/code&gt;、列追加を行うのが&lt;code&gt;column&lt;/code&gt;、空きセルへの配置を試みるのが&lt;code&gt;dense&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;dense&lt;/code&gt;の使いドコロが難しそうというか、利用シーンが今のところ浮かばない。&lt;/p&gt;
+
+&lt;h3 id=&#34;セル同士の間隔-grid-column-gap-grid-row-gap:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;セル同士の間隔 - &lt;code&gt;grid-column-gap&lt;/code&gt;・&lt;code&gt;grid-row-gap&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;セル同士の間隔を指定するには、グリッド要素の&lt;code&gt;grid-column-gap&lt;/code&gt;・&lt;code&gt;grid-row-gap&lt;/code&gt;プロパティに値を指定する。初期値は&lt;code&gt;0&lt;/code&gt;になっているのでセル同士は吸着しているが、グリッドそのものにガターを明示するにはこれに任意の値を指定すれば良い。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.grid {
+  display: grid;
+  grid-template-rows: [row-a] 100px [row-b] 50px [row-c];
+  grid-template-columns: [column-a] 100px [column-b] 150px [column-c] 50px [column-d];
+  grid-template-areas: &#39;area-a area-a area-b&#39;
+                       &#39;area-c area-d area-d&#39;;
+  grid-row-gap: 10px;
+  grid-column-gap: 20px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;grid-gap-のショートハンド-grid-gap:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;&lt;code&gt;grid-*-gap&lt;/code&gt;のショートハンド - &lt;code&gt;grid-gap&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;grid-gap&lt;/code&gt;はショートハンドで、&lt;code&gt;grid-row-gap: 10px; grid-column-gap: 20px;&lt;/code&gt;は&lt;code&gt;grid-gap: 10px 20px;&lt;/code&gt;と等価になる。&lt;/p&gt;
+
+&lt;h3 id=&#34;grid-のショートハンド-grid:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;&lt;code&gt;grid-*&lt;/code&gt;のショートハンド - &lt;code&gt;grid&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;grid-template&lt;/code&gt;・&lt;code&gt;grid-auto-*&lt;/code&gt;・&lt;code&gt;grid-gap&lt;/code&gt;を一括して指定するには&lt;code&gt;grid&lt;/code&gt;プロパティを使う。&lt;code&gt;grid: [grid-template] [grid-auto-flow] [grid-auto-rows] / [grid-auto-columns] [grid-gap];&lt;/code&gt;の順に指定する。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;linear-gradient: ...;&lt;/code&gt;みたいな空気を感じる。&lt;/p&gt;
+
+&lt;h2 id=&#34;セルを定義する-grid-column-start-grid-column-end-grid-row-start-grid-row-end:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;セルを定義する - &lt;code&gt;grid-column-start&lt;/code&gt;・&lt;code&gt;grid-column-end&lt;/code&gt;・&lt;code&gt;grid-row-start&lt;/code&gt;・&lt;code&gt;grid-row-end&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;分割されたグリッドに要素を配置するには、要素が行列それぞれの &lt;strong&gt;どの区切り線からどの区切り線まで&lt;/strong&gt; を占めるかを指定する。要素がセルとして占める範囲を、&lt;code&gt;grid-row-start&lt;/code&gt;・&lt;code&gt;grid-row-end&lt;/code&gt;で行方向の区切り線番号を、&lt;code&gt;grid-column-start&lt;/code&gt;・&lt;code&gt;grid-column-end&lt;/code&gt;で列方向の区切り線番号を指定する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.cell {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  grid-row-end: 3;
+  grid-column-end: 4;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これで&lt;code&gt;.cell&lt;/code&gt;が指定された要素は、コンテナのグリッド要素の &lt;strong&gt;2行目から2行目まで&lt;/strong&gt; と &lt;strong&gt;2列目から3列目まで&lt;/strong&gt; を占めることになる。&lt;/p&gt;
+
+&lt;h3 id=&#34;grid-start-grid-end-のショートハンド-grid-row-grid-column-grid-area:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;&lt;code&gt;grid-*-start&lt;/code&gt;・&lt;code&gt;grid-*-end&lt;/code&gt;のショートハンド - &lt;code&gt;grid-row&lt;/code&gt;・&lt;code&gt;grid-column&lt;/code&gt;・&lt;code&gt;grid-area&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;開始位置と終了位置の指定は、ショートハンドの&lt;code&gt;grid-row&lt;/code&gt;と&lt;code&gt;grid-column&lt;/code&gt;を使ってまとめることもできる。まとめる場合は、数値をスラッシュ区切りで指定する。先程の&lt;code&gt;.cell&lt;/code&gt;をこれらで書き換えると以下のようになる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.cell {
+  grid-row: 2 / 3;
+  grid-column: 2 / 4;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;また、開始と終了の4点を指定できればいいので、1度に指定できるように&lt;code&gt;grid-area&lt;/code&gt;というプロパティも存在する。注意したいのは順序で、&lt;code&gt;grid-row-start&lt;/code&gt; → &lt;code&gt;grid-column-start&lt;/code&gt; → &lt;code&gt;grid-row-end&lt;/code&gt; → &lt;code&gt;grid-column-end&lt;/code&gt;の順に指定する。先程の&lt;code&gt;.cell&lt;/code&gt;を&lt;code&gt;grid-area&lt;/code&gt;で書き換えると以下のようになる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.cell {
+  /* grid-row-start / grid-column-start / grid-row-end / grid-column-end */
+  grid-area: 2 / 2 / 3 / 4;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p data-height=&#34;200&#34; data-theme-id=&#34;0&#34; data-slug-hash=&#34;bpeQpa&#34; data-default-tab=&#34;result&#34; data-user=&#34;1000ch&#34; class=&#34;codepen&#34;&gt;See the Pen &lt;a href=&#34;http://codepen.io/1000ch/pen/bpeQpa/&#34;&gt;display: grid; positive value&lt;/a&gt; by 1000ch (&lt;a href=&#34;http://codepen.io/1000ch&#34;&gt;@1000ch&lt;/a&gt;) on &lt;a href=&#34;http://codepen.io&#34;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;区切り線番号のマイナス値:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;区切り線番号のマイナス値&lt;/h3&gt;
+
+&lt;p&gt;区切り線番号は起点を右下にして、マイナスで指定する方法もある。2行×3列のグリッドであれば、下から数えると-1、-2、-3であり、右から数えると-1、-2、-3、-4ということになる。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://1000ch.net/img/posts/2016/display-grid/display-grid-negative.svg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.cell {
+  grid-row-start: -2;
+  grid-column-start: -3;
+  grid-row-end: -1;
+  grid-column-end: -1;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p data-height=&#34;200&#34; data-theme-id=&#34;0&#34; data-slug-hash=&#34;oxLrrZ&#34; data-default-tab=&#34;result&#34; data-user=&#34;1000ch&#34; class=&#34;codepen&#34;&gt;See the Pen &lt;a href=&#34;http://codepen.io/1000ch/pen/oxLrrZ/&#34;&gt;display: grid; negative value&lt;/a&gt; by 1000ch (&lt;a href=&#34;http://codepen.io/1000ch&#34;&gt;@1000ch&lt;/a&gt;) on &lt;a href=&#34;http://codepen.io&#34;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;命名した区切り線の指定:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;命名した区切り線の指定&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;### 区切り線とその命名&lt;/code&gt;で&lt;code&gt;grid-template-rows&lt;/code&gt;と&lt;code&gt;grid-template-columns&lt;/code&gt;を使って区切り線に名前を付けたが、この名前で範囲を指定することも出来る。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.cell {
+  grid-row-start: row-b;
+  grid-column-start: column-b;
+  grid-row-end: row-c;
+  grid-column-end: column-d;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p data-height=&#34;200&#34; data-theme-id=&#34;0&#34; data-slug-hash=&#34;wGWVaQ&#34; data-default-tab=&#34;result&#34; data-user=&#34;1000ch&#34; class=&#34;codepen&#34;&gt;See the Pen &lt;a href=&#34;http://codepen.io/1000ch/pen/wGWVaQ/&#34;&gt;display: grid; named line value&lt;/a&gt; by 1000ch (&lt;a href=&#34;http://codepen.io/1000ch&#34;&gt;@1000ch&lt;/a&gt;) on &lt;a href=&#34;http://codepen.io&#34;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;命名した領域の指定:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;命名した領域の指定&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;### セル領域の命名&lt;/code&gt;で&lt;code&gt;grid-template-area&lt;/code&gt;を使ってセル領域に名前を付けたが、&lt;code&gt;grid-area&lt;/code&gt;プロパティにはこの名前を指定することも出来る。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.cell {
+  grid-area: area-d;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p data-height=&#34;200&#34; data-theme-id=&#34;0&#34; data-slug-hash=&#34;grMVPj&#34; data-default-tab=&#34;result&#34; data-user=&#34;1000ch&#34; class=&#34;codepen&#34;&gt;See the Pen &lt;a href=&#34;http://codepen.io/1000ch/pen/grMVPj/&#34;&gt;display: grid; named area value&lt;/a&gt; by 1000ch (&lt;a href=&#34;http://codepen.io/1000ch&#34;&gt;@1000ch&lt;/a&gt;) on &lt;a href=&#34;http://codepen.io&#34;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;区切り線からの長さ-スパン-で指定:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;区切り線からの長さ（スパン）で指定&lt;/h3&gt;
+
+&lt;p&gt;セル領域は &lt;strong&gt;区切り線から区切り線&lt;/strong&gt; による指定だけではなく、距離で指定可能である。昔のテーブルレイアウトの&lt;code&gt;rowspan&lt;/code&gt;と&lt;code&gt;colspan&lt;/code&gt;と同じようなものと思って良い。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.cell {
+  grid-row: 2 / 3;
+  grid-column: 2 / span 2;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;このように&lt;code&gt;span&lt;/code&gt;キーワードを使って、セルの数を指定可能。もちろんショートハンドプロパティだけでなく、&lt;code&gt;grid-row-end&lt;/code&gt;プロパティに&lt;code&gt;span 2&lt;/code&gt;と指定も出来るが、開始点と距離がペアになっている方が一見わかりやすそう。ケースバイケースだけど。&lt;/p&gt;
+
+&lt;p data-height=&#34;200&#34; data-theme-id=&#34;0&#34; data-slug-hash=&#34;dMXxOZ&#34; data-default-tab=&#34;result&#34; data-user=&#34;1000ch&#34; class=&#34;codepen&#34;&gt;See the Pen &lt;a href=&#34;http://codepen.io/1000ch/pen/dMXxOZ/&#34;&gt;display: grid; spanning&lt;/a&gt; by 1000ch (&lt;a href=&#34;http://codepen.io/1000ch&#34;&gt;@1000ch&lt;/a&gt;) on &lt;a href=&#34;http://codepen.io&#34;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;グリッド要素における子要素の整列:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;グリッド要素における子要素の整列&lt;/h2&gt;
+
+&lt;p&gt;グリッド要素に対して、&lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/CSS/justify-content&#34;&gt;&lt;code&gt;justify-content&lt;/code&gt;&lt;/a&gt;ないし&lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/CSS/align-content&#34;&gt;&lt;code&gt;align-content&lt;/code&gt;&lt;/a&gt;を使う。Flexboxと同じ要領。&lt;/p&gt;
+
+&lt;h2 id=&#34;親要素に対するセル要素自身の整列:b41a9c1313208d7ba8787b5efe4f16f8&#34;&gt;親要素に対するセル要素自身の整列&lt;/h2&gt;
+
+&lt;p&gt;セル要素に対して、&lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/CSS/justify-self&#34;&gt;&lt;code&gt;justify-self&lt;/code&gt;&lt;/a&gt;ないし&lt;a href=&#34;https://developer.mozilla.org/ja/docs/Web/CSS/align-self&#34;&gt;&lt;code&gt;align-self&lt;/code&gt;&lt;/a&gt;を使う。こちらもFlexboxと同じ要領。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>iOS&#43;Swiftの非同期処理のヘルパークラス</title>
+      <link>https://1000ch.net/posts/2016/swift-async-dispatcher.html</link>
+      <pubDate>Wed, 09 Mar 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/swift-async-dispatcher.html</guid>
+      <description>
+
+&lt;h1 id=&#34;ios-swiftの非同期処理のヘルパークラス:7d8ed1de440c818d877c6e8e9abfc3d2&#34;&gt;iOS+Swiftの非同期処理のヘルパークラス&lt;/h1&gt;
+
+&lt;p&gt;iOSではネットワークを介するような処理は非同期で実行するように書かないと、メインスレッドを専有されて描画処理が大変なことになる。例えば以下の様に画像を&lt;code&gt;NSURL&lt;/code&gt; → &lt;code&gt;NSData&lt;/code&gt;経由で取得するケース。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;if let imageURL = NSURL(string: &amp;quot;https://1000ch.net/img/1000ch.png&amp;quot;) {
+    if let imageData = NSData(contentsOfURL: imageURL) {
+        imageView?.image = UIImage(data: imageData)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;こういうのをTableViewのdelegateあたりで実行していると逐次実行されてまともにスクロールできない。ので、別スレッドで実行して良きタイミングでメインスレッドにdispatchする必要がでてくるが、生で&lt;code&gt;dispatch_async()&lt;/code&gt;を駆使するとややコードが汚い。そんな時のために簡易的なヘルパー関数を2つ用意した。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;import Foundation
+
+class AsyncDispatcher {
+    static func main(closure: () -&amp;gt; ()) {
+        dispatch_async(dispatch_get_main_queue(), closure)
+    }
+
+    static func global(closure: () -&amp;gt; ()) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), closure)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これを使って先程の処理を非同期にすると、（&lt;code&gt;NSURLSession&lt;/code&gt;を使う云々はさておき）以下のように記述できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-swift&#34;&gt;if let imageURL = NSURL(string: &amp;quot;https://1000ch.net/img/1000ch.png&amp;quot;) {
+    AsyncDispatcher.global {
+        if let imageData = NSData(contentsOfURL: imageURL) {
+            AsyncDispatcher.main {
+                imageView?.image = UIImage(data: imageData)
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>誰のためのデザイン？</title>
+      <link>https://1000ch.net/posts/2016/the-design-of-everyday-things.html</link>
+      <pubDate>Wed, 02 Mar 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/the-design-of-everyday-things.html</guid>
+      <description>
+
+&lt;h1 id=&#34;誰のためのデザイン:559e0468c033819cab5506c88c739df9&#34;&gt;誰のためのデザイン？&lt;/h1&gt;
+
+&lt;p&gt;デザインという言葉はとても広義だが、この本に語られてることこそがデザインに他ならないだよなという感想。デザインとアートの区別が付かない人・区別を付けたい人にオススメな本。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Design is not just what it looks like and feels like. Design is how it works.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;ja&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;&amp;quot;Design is not just what it looks like and feels like. Design is how it works.&amp;quot; Happy 60th birthday Steve Jobs! &lt;a href=&#34;http://t.co/leqWlaeLAh&#34;&gt;pic.twitter.com/leqWlaeLAh&lt;/a&gt;&lt;/p&gt;&amp;mdash; CloudMagic (@CloudMagic) &lt;a href=&#34;https://twitter.com/CloudMagic/status/570195090045403137&#34;&gt;2015年2月24日&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Kindle版〜。&lt;/p&gt;
+
+&lt;iframe src=&#34;https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=4788514346&amp;ref=qf_sp_asin_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr&#34; style=&#34;width:120px;height:240px;&#34; scrolling=&#34;no&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+&lt;iframe src=&#34;https://rcm-fe.amazon-adsystem.com/e/cm?t=1000ch-22&amp;o=9&amp;p=8&amp;l=as1&amp;asins=478850362X&amp;ref=qf_sp_asin_til&amp;fc1=000000&amp;IS2=1&amp;lt1=_blank&amp;m=amazon&amp;lc1=0000FF&amp;bc1=000000&amp;bg1=FFFFFF&amp;f=ifr&#34; style=&#34;width:120px;height:240px;&#34; scrolling=&#34;no&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ES2015のclass構文で書くWeb Components</title>
+      <link>https://1000ch.net/posts/2016/web-components-es2015-class.html</link>
+      <pubDate>Sun, 28 Feb 2016 00:00:00 UTC</pubDate>
+      
+      <guid>https://1000ch.net/posts/2016/web-components-es2015-class.html</guid>
+      <description>
+
+&lt;h1 id=&#34;es2015のclass構文で書くweb-components:8c1c6badd6c6c7a5acdf16ad825aa4d1&#34;&gt;ES2015のclass構文で書くWeb Components&lt;/h1&gt;
+
+&lt;h2 id=&#34;これまでのボイラープレート:8c1c6badd6c6c7a5acdf16ad825aa4d1&#34;&gt;これまでのボイラープレート&lt;/h2&gt;
+
+&lt;p&gt;指定したオブジェクトのプロパティを持たせるべく、&lt;code&gt;Object.create()&lt;/code&gt;でオブジェクトで生成し、そこにCustom Elementsのライフサイクル関数（&lt;code&gt;createdCallback&lt;/code&gt;・&lt;code&gt;attachedCallback&lt;/code&gt;・&lt;code&gt;detachedCallback&lt;/code&gt;・&lt;code&gt;attributeChangedCallback&lt;/code&gt;）を生やしたり、永続的なプロパティを定義したりしている。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;template&amp;gt;
+  ...
+&amp;lt;/template&amp;gt;
+&amp;lt;script&amp;gt;
+window.SampleComponent = (function () {
+  &#39;use strict&#39;;
+  let ownerDocument = document.currentScript.ownerDocument;
+  let SampleComponentPrototype = Object.create(HTMLElement.prototype);
+
+  Object.defineProperty(SampleComponentPrototype, &#39;attr&#39;, {
+    configurable: true,
+    enumerable: true,
+    get: function () {
+      return this.getAttribute(&#39;attr&#39;);
+    },
+    set: function(value) {
+      this.setAttribute(&#39;attr&#39;, value);
+    }
+  });
+
+  SampleComponentPrototype.createdCallback = function () {
+    let template = ownerDocument.querySelector(&#39;template&#39;);
+    let clone = document.importNode(template.content, true);
+    this.createShadowRoot();
+    this.shadowRoot.appendChild(clone);
+  };
+
+  return document.registerElement(&#39;sample-component&#39;, {
+    prototype: SampleComponentPrototype
+  });
+})();
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;これからのボイラープレート:8c1c6badd6c6c7a5acdf16ad825aa4d1&#34;&gt;これからのボイラープレート&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;class&lt;/code&gt;構文を使ってよりわかりやすくしたのがこちら。プロトタイプになるオブジェクトにライフサイクル関数を都度生やすよりスマートに見える。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;template&amp;gt;
+  ...
+&amp;lt;/template&amp;gt;
+&amp;lt;script&amp;gt;
+window.SampleComponent = (function () {
+  &#39;use strict&#39;;
+  let ownerDocument = document.currentScript.ownerDocument;
+
+  class SampleComponent extends HTMLElement {
+    get attr() {
+      return this.getAttribute(&#39;attr&#39;);
+    }
+    set attr(value) {
+      this.setAttribute(&#39;attr&#39;, value);
+    }
+
+    createdCallback() {
+      let template = ownerDocument.querySelector(&#39;template&#39;);
+      let clone = document.importNode(template.content, true);
+      this.createShadowRoot();
+      this.shadowRoot.appendChild(clone);
+    }
+  }
+
+  return document.registerElement(&#39;sample-component&#39;, SampleComponent);
+})();
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
